@@ -1,0 +1,21 @@
+.drill-option {
+    padding: 30px 0px;
+    margin: 2px;
+}
+
+.drill-option:hover {
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+.drill-option-correct {
+    padding: 30px 0px;
+    background-color: lightgreen;
+    margin: 2px;
+}
+
+.drill-option-wrong {
+    padding: 30px 0px;
+    background-color: salmon;
+    margin: 2px;
+}

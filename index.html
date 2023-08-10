@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Grammar Grind</title>
+</head>
+<body class="container">
+
+    <h1 class="my-5 text-center">Grammar Grind</h1>
+
+    <!-- Verb Drill -->
+    <div class="card m-auto shadow" style="width: 25rem">
+
+        <!-- FRONT -->
+        <div id="verb-drill-front">
+            <ul class="list-group list-group-flush">
+                
+                <!-- Card Title and text -->
+                <li class="list-group-item">
+                    <div class="card-body">
+                        <h5 class="card-title">Treino de Verbos</h5>
+                        <p class="card-text">Pratique o significado, passado e particípio dos verbos mais frequentes.</p>
+                    </div>
+                </li>
+
+                <!-- Settings -->
+                <li class="list-group-item">
+                    <div class="card-body">
+                        <!-- Verb group -->
+                        <p class="card-text">Qual série de verbos será estudada?</p>
+                        <select class="form-select mb-3" aria-label="Selecionar grupo de verbos" id="verbGroupSelect">
+                            <option value=1 selected>série 1</option>
+                            <option value=2>série 2</option>
+                            <option value=3>série 3</option>
+                        </select>
+                        <p class="card-text fst-italic text-muted" id="verbList"></p>
+
+                        <!-- What to practice -->
+                        <p class="card-text">O que treinar em cada verbo?</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="verb-drill-options" value="meaning" id="verbMeaning" checked>
+                            <label class="form-check-label" for="verbMeaning">
+                                Significado
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="verb-drill-options" value="past" id="verbPast">
+                            <label class="form-check-label" for="verbPast">
+                                Passado
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="verb-drill-options" value="participle" id="verbParticiple">
+                            <label class="form-check-label" for="verbParticiple">
+                                Particípio
+                            </label>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item text-center">
+                    <button class="btn btn-primary" id="startButtonVerbs">Começar</button>
+                </li>
+
+            </ul>
+        </div>
+        
+        <!-- BACK -->
+        <div class="d-none" id="verb-drill-back">
+            <ul class="list-group list-group-flush">
+
+                <!-- Header -->
+                <li class="list-group-item">
+                    <div class="card-body text-center">
+                        <h4 class="card-title" id="verb-series"></h4>
+                    </div>
+                </li>
+
+                <!-- Verb -->
+                <li class="list-group-item text-center">
+                    <h1 class="my-5" id="drilled-verb"></h1>
+                </li>
+
+                <!-- Options -->
+                <li class="list-group-item text-center">
+                    <div class="row g-0">
+                        <div class="col" id="verb-option-1" onclick="checkVerb(this)">
+                        </div>
+                        <div class="col" id="verb-option-2" onclick="checkVerb(this)">
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col" id="verb-option-3" onclick="checkVerb(this)">
+                        </div>
+                        <div class="col" id="verb-option-4" onclick="checkVerb(this)">
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Score -->
+                <li class="list-group-item">
+                    <div class="card-body text-center">
+                        Score: <span id="verbs-score">0/20</span>
+                    </div>
+                </li>                
+
+                <!-- Buttons -->
+                <li class="list-group-item text-center">
+                    <button class="btn btn-primary" id="nextVerbButton" style="width:9rem" disabled>
+                        Próximo
+                    </button>
+                    <button class="btn btn-primary d-none" id="results-verb-button" style="width:9rem">
+                        Resultado
+                    </button>
+                    <button class="btn btn-danger" id="restartButtonVerbs" style="width:9rem">
+                        Encerrar
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="d-none" id="verb-drill-results">
+            <ul class="list-group list-group-flush">
+
+                <!-- Header -->
+                <li class="list-group-item">
+                    <div class="card-body text-center">
+                        <h3>Resultado</h3>
+                    </div>
+                </li>
+
+                <!-- Score -->
+                <li class="list-group-item">
+                    <div class="card-body text-center">
+                        <p>Você acertou...</p>
+                        <h1><span id="final-score-verbs"></span>  de 20</h1>
+                    </div>
+                </li>
+
+                <!-- Ending Text -->
+                <li class="list-group-item">
+                    <div class="card-body">
+                        <p id="final-message-verbs"></p>
+                    </div>
+                </li>
+
+                <!-- Restart button -->
+                <li class="list-group-item text-center">
+                    <button class="btn btn-primary" id="homeVerbButton" style="width:9rem">
+                        Início
+                    </button>
+                </li>
+
+            </ul>
+        </div>
+
+    <!-- End of Verb Drill Card -->
+    </div>
+
+
+
+    <script src="./vocab.js"></script>
+    <script src="./script.js"></script>
+    <!-- BOOTSTRAP 5 SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
